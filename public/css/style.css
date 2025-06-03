@@ -1,0 +1,146 @@
+/* RESET E BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* TELA DE CARREGAMENTO */
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #554687;
+  color: white;
+  font-size: 24px;
+}
+.logo-loading {
+  width: 180px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+
+/* CONTAINERS GERAIS */
+.container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input, button {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  background-color: #554687;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #554687;
+}
+
+a {
+  color: #3949AB;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #554687;
+  padding-top: 40px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar li {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar a:hover {
+  background-color: #554687;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main-content {
+  margin-left: 220px;
+  padding: 30px;
+}
+
+h1, h2 {
+  color: #3949AB;
+  margin-bottom: 20px;
+}
+
+#form-avaliacao {
+  margin-bottom: 20px;
+}
+
+#form-avaliacao input,
+#form-avaliacao textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#form-avaliacao button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#form-avaliacao button:hover {
+  background-color: #0056b3;
+}
+
+
+form {
+  text-align: left;
+}

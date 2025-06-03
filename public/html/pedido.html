@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Detalhes do Pedido</title>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+<body>
+  <div class="main-content">
+    <h2>Detalhes do Pedido</h2>
+    <p><strong>Pedido:</strong> #12345</p>
+    <p><strong>Status:</strong> Entregue</p>
+
+    <h3>Deixe sua Avaliação</h3>
+    <form id="form-avaliacao">
+      <input type="text" id="nome-usuario" placeholder="Seu nome" required />
+      <textarea id="comentario" placeholder="Escreva sua avaliação" required></textarea>
+      <button type="submit">Enviar Avaliação</button>
+    </form>
+
+    <h3>Avaliações dos Usuários</h3>
+    <ul id="lista-avaliacoes" class="pedido-lista"></ul>
+
+    <a href="home.html">Voltar</a>
+  </div>
+  <script src="js/pedido.js"></script>
+</body>
+</html>

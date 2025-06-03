@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador - DetroitSQL</title>
+    <link rel="stylesheet" href="../css/painel_cliente.css">
+</head>
+<body>
+    <div class="container">
+        <h2 id="saudacaoAdmin">Olá, Administrador!</h2>
+        <p>Seja bem-vindo ao painel de controle do DetroitSQL.</p>
+
+        <h3>Estatísticas do Sistema</h3>
+        <p>Usuários Ativos: <span id="totalUsuariosAtivos">Carregando...</span></p>
+
+        <h3>Gerenciamento de Produtos</h3>
+        <button id="toggleAddProductForm" class="product-add-toggle">Adicionar Novo Produto</button>
+
+        <div id="addProductFormSection" class="form-section" style="display: none;">
+            <h4>Informações do Produto</h4>
+            <form id="formAdicionarProduto">
+                <input type="text" id="nomeProduto" placeholder="Nome do Produto" required>
+                <textarea id="descricaoProduto" placeholder="Descrição do Produto" rows="3"></textarea>
+                <input type="number" id="precoProduto" placeholder="Preço" step="0.01" required>
+                <input type="text" id="categoriaProduto" placeholder="Categoria (ex: Camisetas, Calças)">
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar Produto</button>
+                    <button type="button" id="cancelAddProduct" class="btn-secondary">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <button onclick="logout()">Sair do Painel</button>
+    </div>
+
+    <script src="../js/painel_admin.js"></script>
+    <script>
+        function logout() {
+            sessionStorage.clear(); // Limpa todas as informações da sessão
+            window.location.href = '/html/login.html'; // Redireciona para a tela de login
+        }
+    </script>
+</body>
+</html>

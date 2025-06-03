@@ -1,0 +1,40 @@
+        .form-section {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-section input, .form-section textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .form-actions .btn-primary {
+            background-color: #6a0dad; /* Cor do seu tema roxo */
+            color: white;
+        }
+        .form-actions .btn-secondary {
+            background-color: #ccc;
+            color: #333;
+        }
+        .product-add-toggle {
+            background-color: #4CAF50; /* Um verde para o botão de adicionar */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
