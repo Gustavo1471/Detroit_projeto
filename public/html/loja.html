@@ -3,26 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nossa Loja - Produtos</title>
+    <title>Detroit - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css"> 
-    </head>
+    <link rel="stylesheet" href="../css/dashboard.css"> 
+</head>
 <body>
-    <div class="container">
-        <h2 id="saudacaoUsuario">Olá! Bem-vindo(a) à nossa Loja!</h2>
-        <h3>Confira nossos produtos:</h3>
 
-        <div id="produtosContainer">
-            <p>Carregando produtos...</p>
+    <header id="appHeader">
+        <div id="saudacaoContainer">
+            <img id="logoHeader" src="img/logo_sem_nome.png" alt="Logo Detroit">
+            <span id="nomeUsuarioLogado">Olá!</span>
+        </div>
+        
+        <div id="iconesAcoes">
+            <button id="btnHistorico" title="Histórico de Pedidos" onclick="window.location.href='historico_pedidos.html'">
+                <i class="fas fa-box"></i> 
+            </button>
+            <button id="btnSairIcone" title="Sair da conta" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container-vitrine">
+        
+        <h2 style="color: #554687; margin-top: 20px;">Seus Últimos Pedidos</h2>
+        <div class="card-grid" id="pedidosResumoContainer">
+            <p>Carregando últimos pedidos...</p>
         </div>
 
-        <button onclick="logout()">Sair</button>
-    </div>
+        <hr class="divisor">
 
-    <script src="../js/loja.js"></script> <script>
+        <h2 style="color: #554687; margin-top: 20px;">
+            <span id="totalCuponsDisp">0</span> Cupons Disponíveis
+        </h2>
+        <div class="card-grid" id="cuponsResumoContainer">
+            <p>Carregando cupons recentes...</p>
+        </div>
+
+        <footer class="rodape-links">
+            <a href="#">Quem Somos Nós</a> | 
+            <a href="#">Fale Conosco</a>
+        </footer>
+    </main>
+
+    <script>
+        // Funções Globais (Logout e Saudação)
         function logout() {
-            sessionStorage.clear(); // Limpa todas as informações da sessão
-            window.location.href = '/html/login.html'; // Redireciona para a tela de login
+            localStorage.clear(); 
+            sessionStorage.clear();
+            window.location.href = '/html/login.html'; 
         }
+
+        window.onload = function() {
+            const nome = sessionStorage.getItem('nomeUsuario') || 'Cliente';
+            document.getElementById('nomeUsuarioLogado').textContent = `Olá, ${nome}!`;
+            
+            // 🚨 Chama a função que busca o resumo da Home
+            carregarDashboardResumo(); 
+        };
     </script>
+    
+    <script src="../js/dashboard.js"></script>
+
 </body>
 </html>

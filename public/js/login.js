@@ -18,22 +18,33 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         const data = await response.json(); // Pega a resposta do servidor (que será um JSON)
 
-        if (response.ok) { // Se a resposta HTTP for de sucesso (status 200-299)
-            alert('Login bem-sucedido! Bem-vindo(a), ' + data.nome);
+       if (response.ok) { // Se a resposta HTTP for de sucesso (status 200-299)
+            alert('Login bem-sucedido! Bem-vindo(a), ' + data.nome);
 
-            // Armazena informações do usuário na sessionStorage para usar em outras páginas (opcional, mas recomendado)
-            sessionStorage.setItem('idUsuario', data.idUsuario);
-            sessionStorage.setItem('nomeUsuario', data.nome);
-            sessionStorage.setItem('tipoUsuario', data.tipoUsuario);
+            // Armazena informações do usuário na sessionStorage
+            sessionStorage.setItem('idUsuario', data.idUsuario);
+            sessionStorage.setItem('nomeUsuario', data.nome);
+            sessionStorage.setItem('tipoUsuario', data.tipoUsuario);
+            
+            // Variável para a página de destino
+            let paginaDestino;
 
-            // Redireciona o usuário com base no tipo (cliente ou admin)
-            if (data.tipoUsuario === 'cliente') {
-                window.location.href = '/html/loja.html'; // Redireciona para a tela de consulta/painel do cliente
-            } else if (data.tipoUsuario === 'admin') {
-                window.location.href = '/html/loja.html'; // Redireciona para uma tela de admin (se você criar uma)
+            // Redireciona o usuário com base no tipo (cliente ou admin)
+            if (data.tipoUsuario === 'cliente') {
+                // Se for cliente, vai para a nova Home/Dashboard
+                paginaDestino = '/html/loja.html'; 
+            } else if (data.tipoUsuario === 'admin') {
+                // Se for admin, vai para o novo Painel de Gestão
+                paginaDestino = '/html/admin_dashboard.html'; 
+            } else {
+                // Caso o tipoUsuario não seja reconhecido, define um padrão seguro (opcional)
+                paginaDestino = '/html/home.html'; 
             }
             
-        } else {
+            window.location.href = paginaDestino; 
+            
+        } else {
+
             // Se a resposta não for sucesso (ex: 401 Unauthorized, 400 Bad Request)
             alert('Erro no login: ' + (data.message || 'Credenciais inválidas.'));
         }

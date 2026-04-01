@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detroit - Histórico de Pedidos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="../css/pedidos.css"> 
+
+</head>
+<body>
+    
+    <header id="appHeader">
+        <div id="saudacaoContainer">
+            <img id="logoHeader" src="img/logo_sem_nome.png" alt="Logo Detroit">
+            <span id="nomeUsuarioLogado">Olá!</span>
+        </div>
+        
+        <div id="iconesAcoes">
+            <button id="btnHome" title="Ir para Vitrine" onclick="window.location.href='/html/loja.html'">
+                <i class="fas fa-home"></i> 
+            </button>
+            <button id="btnSairIcone" title="Sair da conta" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+    
+    <main class="container-vitrine">
+        <h2 style="color: #554687; margin-bottom: 20px;">Seu Histórico de Compras</h2>
+        
+        <div id="listaPedidosContainer">
+            <p>Carregando seus pedidos...</p>
+        </div>
+    </main>
+
+
+<div id="avaliacaoModal" class="modal-overlay">
+    <div class="modal-content container">
+        <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+        
+        <h2 style="color: #554687;">Avaliar Pedido</h2>
+        
+        <p id="contadorItens" style="font-weight: bold; margin-bottom: 10px;"></p>
+        
+        <p>Produto: <strong id="produtoModalNome"></strong></p>
+        
+        <form id="form-avaliacao-modal">
+            <input type="hidden" id="idProdutoAvaliar" name="idProdutoAvaliar"> 
+            
+            <div id="estrelasContainer">
+                <p style="margin-bottom: 5px;">Nota:</p>
+                <div id="ratingStars">
+                    </div>
+            </div>
+            
+            <textarea id="comentarioAvaliacao" placeholder="Escreva sua avaliação (opcional)" rows="4" style="margin-bottom: 10px;"></textarea>
+            
+            <button type="submit" class="btn-avaliar">Enviar Avaliação</button>
+            <button type="button" class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+    <script>
+        function logout() {
+            localStorage.clear(); 
+            sessionStorage.clear();
+            window.location.href = '/html/login.html'; 
+        }
+
+            window.onload = function() {
+            const nome = localStorage.getItem('nomeUsuario') || sessionStorage.getItem('nomeUsuario') || 'Cliente';
+            document.getElementById('nomeUsuarioLogado').textContent = `Olá, ${nome}!`;
+          
+            carregarHistoricoPedidos();
+        };
+    </script>
+    
+    <script src="../js/historicoPedidos.js"></script>
+
+</body>
+</html>

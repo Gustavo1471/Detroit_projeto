@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detroit - Painel do Administrador</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="../css/style.css"> 
+    <link rel="stylesheet" href="../css/admin.css"> </head>
+<body>
+    
+    <header id="appHeader">
+        <div id="saudacaoContainer">
+            <span id="nomeUsuarioLogado">Olá, Admin!</span>
+        </div>
+        
+        <div id="iconesAcoes">
+            <button id="btnHome" title="Ir para Home Cliente" onclick="window.location.href='/html/home.html'">
+                <i class="fas fa-store"></i> 
+            </button>
+            <button id="btnSairIcone" title="Sair da conta" onclick="logout()">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </div>
+    </header>
+    
+    <main class="container-vitrine">
+        <h2 style="color: #554687; margin-bottom: 20px;">Gestão de Pedidos (Todos)</h2>
+        
+        <div id="tabelaPedidosAdminContainer">
+            <p>Carregando todos os pedidos...</p>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            localStorage.clear(); 
+            sessionStorage.clear();
+            window.location.href = '/html/login.html'; 
+        }
+
+        window.onload = function() {
+            const nome = sessionStorage.getItem('nomeUsuario') || 'Admin';
+            document.getElementById('nomeUsuarioLogado').textContent = `Olá, ${nome}! (Admin)`;
+            
+            // 🚨 NOVO: Chamada da função que busca TODOS os pedidos
+            carregarPedidosAdmin(); 
+        };
+    </script>
+    
+    <script src="../js/admin.js"></script>
+
+</body>
+</html>
