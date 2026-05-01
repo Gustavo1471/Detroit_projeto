@@ -2,28 +2,79 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Página Inicial</title>
-  <link rel="stylesheet" href="/public/css/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detroit - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css"> 
+  <link rel="stylesheet" href="../css/home.css"> 
 </head>
-<body>
-  <div class="sidebar">
-    <ul>
-      <li><a href="home.html">Início</a></li>
+<body class="home-body">
+
+  <!-- Menu Lateral -->
+  <div id="sideMenu" class="sidebar-menu">
+    <div class="menu-header">
+      <span>Menu</span>
+      <i class="fas fa-times-circle close-btn" onclick="toggleMenu()"></i>
+    </div>
+    <ul class="menu-items">
+      <li><a href="home.html">Tela Inicial</a></li>
+      <li><a href="loja.html">Informações da Loja</a></li>
       <li><a href="perfil.html">Perfil</a></li>
-      <li><a href="pedido.html">Pedidos</a></li>
-      <li><a href="loja.html">Loja</a></li>
-      <li><a href="sobre.html">Sobre</a></li>
-      <li><a href="login.html">Sair</a></li>
+      <li><a href="sobre.html">Sobre nós</a></li>
     </ul>
+    <button class="btn-logout-sidebar" onclick="logout()">Logout</button>
   </div>
-  <div class="main-content">
-    <h1>Bem-vindo!</h1>
-    <p>Histórico de pedidos:</p>
-    <ul class="pedido-lista">
-      <li><a href="pedido.html">Pedido #12345</a></li>
-      <li><a href="pedido.html">Pedido #12346</a></li>
-    </ul>
-  </div>
-  <script src="js/home.js"></script>
+
+  <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
+  
+  <header id="appHeader">
+    <div id="saudacaoContainer">
+      <i class="fas fa-bars toggle-menu" onclick="toggleMenu()" style="cursor: pointer;"></i>
+      <span id="nomeUsuarioLogado">Olá!</span>
+    </div>
+    <div id="iconesAcoes">
+      <i class="fas fa-user-circle user-icon"></i>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-banner">
+      <div class="search-container">
+        <div class="box-icon">
+          <img src="../html/img/box.png" alt="Ícone Caixa">
+        </div>
+        <input type="text" placeholder="O que você está procurando hoje?">
+      </div>
+    </section>
+
+    <section class="home-content">
+      <div class="titulo-home">
+        <h2>Destaques para você:</h2>
+      </div>
+      <div class="categorias-grid">
+        <div class="categoria-card"><i class="fas fa-tshirt"></i><span>Roupas</span></div>
+        <div class="categoria-card"><i class="fas fa-laptop"></i><span>Eletrônicos</span></div>
+        <div class="categoria-card"><i class="fas fa-home"></i><span>Casa</span></div>
+        <div class="categoria-card"><i class="fas fa-gift"></i><span>Acessórios</span></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Função colocada diretamente aqui para garantir execução imediata
+    function toggleMenu() {
+        const menu = document.getElementById("sideMenu");
+        const overlay = document.getElementById("menuOverlay");
+        
+        if (menu.style.width === "280px") {
+            menu.style.width = "0px";
+            overlay.style.display = "none";
+        } else {
+            menu.style.width = "280px";
+            overlay.style.display = "block";
+        }
+    }
+  </script>
+  <script src="../js/home.js"></script>
 </body>
 </html>

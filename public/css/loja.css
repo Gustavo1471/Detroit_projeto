@@ -1,6 +1,12 @@
-/* ESTILO GERAL */
-body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
+/* ESTILO GLOBAL */
+body {
+    background-color: #d1e9e7;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+/* HEADER E BUSCA CENTRALIZADA */
 #appHeader {
     background-color: #554687;
     height: 60px;
@@ -12,7 +18,6 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
     position: relative;
 }
 
-/* Busca Centralizada */
 .header-search {
     background-color: #98ded9;
     padding: 5px 15px;
@@ -29,12 +34,12 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
 .box-icon-small { width: 25px; height: auto; }
 .header-search input {
     background: none; border: none; outline: none;
-    color: #554687; font-weight: bold; width: 200px;
+    color: #554687; font-weight: bold; width: 220px;
 }
 
 .toggle-menu, .user-icon { font-size: 24px; color: #98ded9; cursor: pointer; }
 
-/* SIDEBAR MENU LATERAL */
+/* SIDEBAR MENU LATERAL (ESTILO PROTÓTIPO) */
 .sidebar-menu {
     height: 100%;
     width: 0;
@@ -56,6 +61,7 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
     align-items: center;
     color: white;
     font-weight: bold;
+    font-size: 1.2rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -63,9 +69,20 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
 
 .menu-items { list-style: none; padding: 0; margin: 0; }
 .menu-items li { border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-.menu-items a { padding: 15px 25px; text-decoration: none; color: white; display: block; }
+.menu-items a {
+    padding: 15px 25px;
+    text-decoration: none;
+    color: white;
+    display: block;
+}
 
-.menu-footer { padding: 20px; margin-top: auto; display: flex; justify-content: center; }
+/* RODAPÉ DO MENU COM BOTÃO LOGOUT CENTRALIZADO */
+.menu-footer {
+    padding: 20px;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
 
 .btn-logout-sidebar {
     background-color: #2e284d;
@@ -86,19 +103,12 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
     z-index: 4500;
 }
 
-/* CARDS E MODAL (MANTIDOS) */
-.pedido-card {
-    background-color: #e0f2f1;
-    border-bottom: 2px solid #554687;
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    gap: 20px;
-    max-width: 900px;
-    margin: 10px auto;
-    text-align: left;
+/* INFO CARD */
+.info-loja-container { padding: 40px 20px; display: flex; justify-content: center; }
+.info-card {
+    background-color: #c5c1d7;
+    border-radius: 25px;
+    padding: 40px;
+    max-width: 950px;
+    width: 100%;
 }
-
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 6000; }
-.modal-content { background: #c5c1d7; width: 90%; max-width: 450px; margin: 100px auto; padding: 30px; border-radius: 15px; position: relative; color: #554687; }
-.star.ativo { color: #fdd835; }

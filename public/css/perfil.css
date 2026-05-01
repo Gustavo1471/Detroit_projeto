@@ -1,0 +1,27 @@
+.perfil-container { padding: 20px; max-width: 1000px; margin: 0 auto; }
+
+.perfil-card { background-color: #c5c1d7; border-radius: 30px; padding: 30px; margin-bottom: 20px; }
+
+.perfil-header-info { display: flex; gap: 30px; margin-bottom: 25px; position: relative; }
+
+.perfil-titulo-sessao { position: absolute; right: 20px; top: 0; font-size: 2.5rem; font-weight: bold; color: #554687; }
+
+.foto-perfil-wrapper { position: relative; width: 150px; height: 150px; }
+
+.foto-img { width: 100%; height: 100%; background-color: white; border-radius: 15px; object-fit: cover; }
+
+.edit-photo-icon { position: absolute; bottom: -5px; right: -5px; background-color: #98ded9; width: 35px; height: 35px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #554687; cursor: pointer; }
+
+.campo-grupo { margin-bottom: 15px; display: flex; flex-direction: column; }
+
+.campo-grupo label { color: #554687; font-weight: bold; margin-bottom: 5px; }
+
+.input-editavel { background-color: #7a6ba8; color: white; padding: 10px 20px; border-radius: 20px; display: flex; justify-content: space-between; align-items: center; }
+
+.input-editavel i { cursor: pointer; font-size: 0.9rem; color: #333; }
+
+.perfil-grid-campos { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.avaliacoes-section { background-color: #c5c1d7; border-radius: 30px; padding: 30px; }
+
+.titulo-avaliacoes { font-size: 1.8rem; font-weight: bold; color: #554687; margin-bottom: 20px; }

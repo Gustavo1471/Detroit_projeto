@@ -3,69 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detroit - Dashboard</title>
+    <title>Detroit - Informações sobre a loja</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css"> 
-    <link rel="stylesheet" href="../css/dashboard.css"> 
+    <link rel="stylesheet" href="../css/loja.css"> 
 </head>
-<body>
+<body class="home-body">
+
+    <!-- Menu Lateral -->
+    <div id="sideMenu" class="sidebar-menu">
+        <div class="menu-header">
+            <span>Menu</span>
+            <i class="fas fa-times-circle close-btn" onclick="toggleMenu()"></i>
+        </div>
+        <ul class="menu-items">
+            <li><a href="home.html">Tela Inicial</a></li>
+            <li><a href="loja.html">Informações da Loja</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+        </ul>
+        <div class="menu-footer">
+            <button class="btn-logout-sidebar" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Overlay para fechar ao clicar fora -->
+    <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
 
     <header id="appHeader">
         <div id="saudacaoContainer">
-            <img id="logoHeader" src="img/logo_sem_nome.png" alt="Logo Detroit">
+            <i class="fas fa-bars toggle-menu" onclick="toggleMenu()"></i>
             <span id="nomeUsuarioLogado">Olá!</span>
         </div>
         
+        <div class="header-search">
+            <img src="../html/img/box.png" alt="Caixa" class="box-icon-small">
+            <input type="text" placeholder="Digite o código do seu pedido:">
+        </div>
+
         <div id="iconesAcoes">
-            <button id="btnHistorico" title="Histórico de Pedidos" onclick="window.location.href='historico_pedidos.html'">
-                <i class="fas fa-box"></i> 
-            </button>
-            <button id="btnSairIcone" title="Sair da conta" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
+            <i class="fas fa-user-circle user-icon"></i>
         </div>
     </header>
 
-    <main class="container-vitrine">
-        
-        <h2 style="color: #554687; margin-top: 20px;">Seus Últimos Pedidos</h2>
-        <div class="card-grid" id="pedidosResumoContainer">
-            <p>Carregando últimos pedidos...</p>
+    <main class="info-loja-container">
+        <div class="info-card">
+            <h1>Informações sobre a loja</h1>
+            <p>Na Urban Vogue, acreditamos que a moda vai além de tendências – é uma forma de expressar quem você é. Nossa coleção combina estilo urbano com sofisticação, oferecendo peças modernas, versáteis e cheias de personalidade. De looks despojados para o dia a dia a visuais ousados para ocasiões especiais, temos tudo para você se destacar onde quer que vá.</p>
+            <p>Aqui, cada peça é pensada para valorizar sua individualidade. Oferecemos roupas que não seguem apenas a moda, mas também criam tendências, sempre com qualidade e design inovador. Acreditamos que cada pessoa tem uma história para contar, e queremos ser parte dela, ajudando você a expressar seu estilo autêntico.</p>
         </div>
-
-        <hr class="divisor">
-
-        <h2 style="color: #554687; margin-top: 20px;">
-            <span id="totalCuponsDisp">0</span> Cupons Disponíveis
-        </h2>
-        <div class="card-grid" id="cuponsResumoContainer">
-            <p>Carregando cupons recentes...</p>
-        </div>
-
-        <footer class="rodape-links">
-            <a href="#">Quem Somos Nós</a> | 
-            <a href="#">Fale Conosco</a>
-        </footer>
     </main>
 
-    <script>
-        // Funções Globais (Logout e Saudação)
-        function logout() {
-            localStorage.clear(); 
-            sessionStorage.clear();
-            window.location.href = '/html/login.html'; 
-        }
+    <div class="support-float">
+        <i class="fas fa-headset"></i>
+    </div>
 
-        window.onload = function() {
-            const nome = sessionStorage.getItem('nomeUsuario') || 'Cliente';
-            document.getElementById('nomeUsuarioLogado').textContent = `Olá, ${nome}!`;
-            
-            // 🚨 Chama a função que busca o resumo da Home
-            carregarDashboardResumo(); 
-        };
-    </script>
-    
-    <script src="../js/dashboard.js"></script>
-
+    <script src="../js/loja.js"></script>
 </body>
 </html>

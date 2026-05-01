@@ -2,20 +2,57 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Detroit</title>
   <link rel="stylesheet" href="../css/style.css" />
 </head>
-<body>
-  <div class="container">
-    <h2>Login</h2>
-    <form id="loginForm">
-      <input type="email" id="email" placeholder="Email" required />
-      <input type="password" id="senha" placeholder="Senha" required />
-      <button type="submit">Entrar</button>
-    </form>
-    <p><a href="cadastro.html" id="linkCadastro">Não tem uma conta? Cadastre-se</a></p>
+<body class="login-page">
+  <div class="login-wrapper">
+    
+    <div class="welcome-section">
+      <div class="welcome-content">
+        <h1>Bem-vindo de volta</h1>
+        <p>Para continuar, insira seu usuário e senha</p>
+        <div class="divider"><span>ou</span></div>
+        <p>Crie uma conta com seus dados pessoais</p>
+        <a href="cadastro.html" class="btn-outline">Cadastre-se</a>
+      </div>
+    </div>
+
+    <div class="container login-card">
+      <div class="card-content">
+        <div class="logo-detroit">
+          <img src="../html/img/logo.png" alt="Logo Detroit" />
+          <h2>DETROIT</h2>
+        </div>
+
+        <form id="loginForm">
+          <div class="input-group">
+            <label for="email">Usuário:</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="input-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" required />
+          </div>
+          <a href="#" class="forgot-password">Esqueci minha senha</a>
+          <button type="submit" class="btn-submit">Entrar</button>
+        </form>
+
+        <div class="social-login">
+          <a href="https://accounts.google.com/signin" target="_blank" title="Logar com Google">
+            <img src="../html/img/google.png" alt="Google" class="social-icon" />
+          </a>
+          <a href="https://www.facebook.com/login" target="_blank" title="Logar com Facebook">
+            <img src="../html/img/facebook.png" alt="Facebook" class="social-icon" />
+          </a>
+          <a href="https://mail.google.com" target="_blank" title="Logar com Email">
+            <img src="../html/img/email.png" alt="Email" class="social-icon" />
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="../js/login.js"></script>
 </body>
 </html>
-

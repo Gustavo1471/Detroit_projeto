@@ -1,40 +1,123 @@
-/* --- CORREÇÃO: Estilos para o Novo Header Minimalista --- */
+/* ESTILO GERAL */
+body.home-body {
+    background-color: #d1e9e7;
+    margin: 0;
+    overflow-x: hidden;
+}
+
 #appHeader {
+    background-color: #554687;
+    height: 60px;
     display: flex;
-    justify-content: space-between; /* Espaça a saudação dos ícones */
-    align-items: center; /* Centraliza verticalmente o texto e os ícones */
-    background-color: #554687; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
     color: white;
-    padding: 8px 20px; /* Reduz o padding vertical (altura do header) */
-    width: 100%;
-    position: fixed; 
+}
+
+.toggle-menu {
+    font-size: 24px;
+    color: #98ded9;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+/* SIDEBAR MENU LATERAL (ESTILO EXATO DA IMAGEM)[cite: 8] */
+.sidebar-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 5000;
     top: 0;
     left: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    z-index: 1000; 
+    background-color: #554687;
+    overflow-x: hidden;
+    transition: 0.4s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-#saudacaoContainer {
-    font-size: 1em; /* Levemente menor */
-    font-weight: bold;
-}
-
-#iconesAcoes {
-    display: flex; /* 🚨 NOVO: Coloca os botões em linha */
-    align-items: center; 
-}
-
-#iconesAcoes button {
-    background: none;
-    border: none;
+.menu-header {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
-    cursor: pointer;
-    font-size: 1.2em; /* Reduz o tamanho dos ícones */
-    margin-left: 10px; /* Reduz o espaçamento entre os ícones */
-    padding: 5px;
-    transition: color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.2);
 }
 
-#iconesAcoes button:hover {
-    color: #ccc;
+.close-btn {
+    color: #98ded9;
+    cursor: pointer;
+    font-size: 1.3rem;
 }
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-items li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.menu-items a {
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.menu-items a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* RODAPÉ DO MENU COM BOTÃO LOGOUT[cite: 8] */
+.menu-footer {
+    margin-top: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-logout-sidebar {
+    background-color: #2e284d;
+    color: #c5c1d7;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* OVERLAY E BANNER */
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 4500;
+}
+
+.search-banner {
+    background-image: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('../html/img/fundo_entregadores.jpg');
+    background-size: cover; height: 200px;
+    display: flex; justify-content: center; align-items: center;
+}
+
+.search-container {
+    background-color: #98ded9; padding: 8px 15px; border-radius: 30px;
+    display: flex; align-items: center; gap: 10px;
+}
+
+.box-icon img { width: 35px; height: auto; }
+
+.home-content { padding: 40px 20px; text-align: center; }
+.titulo-home h2 { background-color: #98ded9; color: #554687; padding: 10px 40px; border-radius: 20px; display: inline-block; }
+
+.categorias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; max-width: 900px; margin: 40px auto; }
+.categoria-card { background-color: #c5c1d7; padding: 25px; border-radius: 20px; color: #554687; display: flex; flex-direction: column; align-items: center; gap: 10px; }

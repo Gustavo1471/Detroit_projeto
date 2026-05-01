@@ -7,78 +7,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css"> 
     <link rel="stylesheet" href="../css/pedidos.css"> 
-
 </head>
-<body>
+<body class="pedidos-body">
+
+    <!-- Menu Lateral Padronizado -->
+    <div id="sideMenu" class="sidebar-menu">
+        <div class="menu-header">
+            <span>Menu</span>
+            <i class="fas fa-times-circle close-btn" onclick="toggleMenu()"></i>
+        </div>
+        <ul class="menu-items">
+            <li><a href="home.html">Tela Inicial</a></li>
+            <li><a href="loja.html">Informações da Loja</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+            <li><a href="sobre.html">Sobre nós</a></li>
+        </ul>
+        <div class="menu-footer">
+            <button class="btn-logout-sidebar" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Overlay do Menu -->
+    <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
     
     <header id="appHeader">
         <div id="saudacaoContainer">
-            <img id="logoHeader" src="img/logo_sem_nome.png" alt="Logo Detroit">
+            <i class="fas fa-bars toggle-menu" onclick="toggleMenu()"></i>
             <span id="nomeUsuarioLogado">Olá!</span>
         </div>
-        
+
+        <!-- Busca Centralizada no Header -->
+        <div class="header-search">
+            <img src="../html/img/box.png" alt="Caixa" class="box-icon-small">
+            <input type="text" placeholder="Digite o código do seu pedido:">
+        </div>
+
         <div id="iconesAcoes">
-            <button id="btnHome" title="Ir para Vitrine" onclick="window.location.href='/html/loja.html'">
-                <i class="fas fa-home"></i> 
-            </button>
-            <button id="btnSairIcone" title="Sair da conta" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i>
-            </button>
+            <i class="fas fa-user-circle user-icon"></i>
         </div>
     </header>
     
-    <main class="container-vitrine">
-        <h2 style="color: #554687; margin-bottom: 20px;">Seu Histórico de Compras</h2>
-        
-        <div id="listaPedidosContainer">
-            <p>Carregando seus pedidos...</p>
-        </div>
+    <main>
+        <section class="search-banner">
+            <!-- Banner mantido para estética visual conforme protótipo original -->
+        </section>
+
+        <section class="historico-section">
+            <div class="titulo-historico">
+                <h2>Histórico de Pedidos:</h2>
+            </div>
+            <div id="listaPedidosContainer">
+                <p>Carregando seus pedidos...</p>
+            </div>
+        </section>
     </main>
 
-
-<div id="avaliacaoModal" class="modal-overlay">
-    <div class="modal-content container">
-        <span class="fechar-modal" onclick="fecharModal()">&times;</span>
-        
-        <h2 style="color: #554687;">Avaliar Pedido</h2>
-        
-        <p id="contadorItens" style="font-weight: bold; margin-bottom: 10px;"></p>
-        
-        <p>Produto: <strong id="produtoModalNome"></strong></p>
-        
-        <form id="form-avaliacao-modal">
-            <input type="hidden" id="idProdutoAvaliar" name="idProdutoAvaliar"> 
-            
-            <div id="estrelasContainer">
-                <p style="margin-bottom: 5px;">Nota:</p>
-                <div id="ratingStars">
-                    </div>
-            </div>
-            
-            <textarea id="comentarioAvaliacao" placeholder="Escreva sua avaliação (opcional)" rows="4" style="margin-bottom: 10px;"></textarea>
-            
-            <button type="submit" class="btn-avaliar">Enviar Avaliação</button>
-            <button type="button" class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
-        </form>
+    <div class="support-float">
+        <i class="fas fa-headset"></i>
     </div>
-</div>
 
-    <script>
-        function logout() {
-            localStorage.clear(); 
-            sessionStorage.clear();
-            window.location.href = '/html/login.html'; 
-        }
+    <!-- MODAL DE AVALIAÇÃO -->
+    <div id="avaliacaoModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <h2>Avaliar Pedido</h2>
+            <p id="contadorItens"></p>
+            <p>Produto: <strong id="produtoModalNome"></strong></p>
+            
+            <form id="form-avaliacao-modal">
+                <input type="hidden" id="idProdutoAvaliar"> 
+                <div id="estrelasContainer">
+                    <p>Nota:</p>
+                    <div id="ratingStars"></div>
+                </div>
+                <textarea id="comentarioAvaliacao" placeholder="Escreva sua avaliação (opcional)" rows="4"></textarea>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn-enviar-av">Enviar Avaliação</button>
+                    <button type="button" class="btn-cancelar-av" onclick="fecharModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-            window.onload = function() {
-            const nome = localStorage.getItem('nomeUsuario') || sessionStorage.getItem('nomeUsuario') || 'Cliente';
-            document.getElementById('nomeUsuarioLogado').textContent = `Olá, ${nome}!`;
-          
-            carregarHistoricoPedidos();
-        };
-    </script>
-    
     <script src="../js/historicoPedidos.js"></script>
-
 </body>
 </html>
