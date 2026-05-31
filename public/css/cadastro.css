@@ -1,0 +1,198 @@
+/* Importação de fonte moderna do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body.login-page {
+  background-color: #554687;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Container principal alinhado e centralizado */
+.login-wrapper {
+  display: flex;
+  width: 90%;
+  max-width: 950px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* Lado Esquerdo - Boas-vindas */
+.welcome-section {
+  flex: 1;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.welcome-content h1 {
+  font-size: 2.6rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.welcome-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 8px 0;
+}
+
+/* Divisor "ou" estilizado */
+.divider {
+  margin: 25px 0;
+  position: relative;
+  text-align: center;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  right: 15%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.25);
+  z-index: 1;
+}
+
+.divider span {
+  background-color: #554687;
+  padding: 0 15px;
+  position: relative;
+  z-index: 2;
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+/* Botão de Login (Agora visível como botão vazado elegante) */
+.btn-outline {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 12px 35px;
+  color: white;
+  text-decoration: none;
+  border: 2px solid white;
+  border-radius: 25px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background-color: white;
+  color: #554687;
+  transform: translateY(-2px);
+}
+
+/* Lado Direito - Card de Cadastro */
+.login-card {
+  flex: 0.9;
+  background-color: #c5c1d7; 
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.logo-detroit img {
+  height: 75px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.logo-detroit h2 {
+  margin: 0 0 25px 0;
+  color: #2b2244;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+/* Formulário e Inputs Ajustados */
+#cadastroForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  text-align: left;
+  margin-bottom: 15px; /* Espaçamento ligeiramente menor para caber os 4 campos de forma elegante */
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #2b2244;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  width: 100%;
+  box-sizing: border-box; /* Impede o input de estourar para fora do card */
+  background-color: #f0eef6; /* Fundo claro para contraste excelente com as letras escuras */
+  border: 1px solid #a4a0b7;
+  border-radius: 25px;
+  padding: 12px 20px;
+  color: #2b2244;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #554687;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(85, 70, 135, 0.2);
+}
+
+/* Botão de Cadastrar */
+.btn-submit {
+  background-color: #26baa4; /* Verde esmeralda moderno combinando com o Login */
+  color: white;
+  border-radius: 25px;
+  padding: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  margin-top: 15px; /* Empurra o botão para longe do último input */
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #1e9683;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(38, 186, 164, 0.3);
+}
+
+/* Redes Sociais */
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 20px;
+}
+
+.social-login a {
+  transition: transform 0.2s;
+}
+
+.social-login a:hover {
+  transform: scale(1.2);
+}
+
+.social-icon {
+  height: 32px;
+  width: 32px;
+  object-fit: contain;
+}

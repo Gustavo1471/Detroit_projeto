@@ -52,7 +52,7 @@ async function carregarHistoricoPedidos() {
                         <p class="produto-valor">Valor: <strong>R$ ${item.precoUnitario.toFixed(2)}</strong></p>
                     </div>
                     ${!item.idAvaliacao ? 
-                        `<button class="btn-enviar-av" onclick="iniciarAvaliacaoSequencial(${pedido.idPedido})">Avaliar</button>` :
+                        `<button class="btn-enviar-av" onclick="iniciarAvaliacaoSequencial(${pedido.idPedido}, ${item.idProduto})">Avaliar</button>` :
                         `<div class="rating-badge"><span class="nota">Avaliado</span><i class="fas fa-check"></i></div>`
                     }
                 `;
@@ -101,3 +101,80 @@ window.onload = () => {
     document.getElementById('nomeUsuarioLogado').innerHTML = `Olá, <strong>${nome}</strong>!`;
     carregarHistoricoPedidos();
 };
+
+// Modificado para receber também o idProduto correto do card clicado
+window.iniciarAvaliacaoSequencial = function(idPedido, idProduto) {
+    pedidoAtualId = idPedido;
+    
+    const itens = cachePedidos.get(idPedido);
+    if (itens && itens.length > 0) {
+        // Encontra o produto específico dentro do pedido mapeado
+        const itemSelecionado = itens.find(i => i.idProduto === idProduto);
+        
+        if (itemSelecionado) {
+            document.getElementById("produtoModalNome").textContent = itemSelecionado.nomeProduto;
+            document.getElementById("idProdutoAvaliar").value = itemSelecionado.idProduto;
+        }
+    }
+
+    // Reseta o estado das estrelas e comentário
+    notaSelecionada = 0;
+    destacarEstrelas(0);
+    document.getElementById("comentarioAvaliacao").value = "";
+
+    // Exibe o modal centralizado na tela
+    document.getElementById("avaliacaoModal").style.display = "flex";
+};
+
+// ====================================================================================
+// 🚀 TRECHO SUBSTUIÍDO: ENVIO REAL PARA A API DO BACKEND COM VERIFICAÇÃO DE VOUCHER
+// ====================================================================================
+document.getElementById("form-avaliacao-modal")?.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const idUsuarioCliente = sessionStorage.getItem('idUsuario') || 1;
+    const idProduto = document.getElementById("idProdutoAvaliar").value;
+    const comentario = document.getElementById("comentarioAvaliacao").value.trim();
+    
+    if (notaSelecionada === 0) {
+        alert("Por favor, selecione uma nota em estrelas antes de enviar!");
+        return;
+    }
+
+    try {
+        // Envia os dados para a rota do app.js
+        const response = await fetch('/api/avaliar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idUsuarioCliente: parseInt(idUsuarioCliente),
+                idProduto: parseInt(idProduto),
+                nota: notaSelecionada,
+                comentario: comentario
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Verifica se a lógica do UC08 gerou o cupom (múltiplo de 3)
+            if (data.recompensaConcedida) {
+                alert(`🎉 PARABÉNS! Você atingiu sua meta de avaliações!\n\nSeu Voucher de 10% OFF: ${data.codigoCupom || data.codigo}`);
+            } else {
+                alert("Avaliação registrada com sucesso! Obrigado pelo seu feedback.");
+            }
+
+            fecharModal();
+            window.location.reload(); // Recarrega a página para atualizar os botões para "Avaliado"
+
+        } else {
+            alert(`Aviso: ${data.message || 'Erro ao registrar a avaliação.'}`);
+            fecharModal();
+        }
+
+    } catch (error) {
+        console.error("Erro ao conectar com a API de avaliação:", error);
+        alert("Não foi possível conectar ao servidor. Tente novamente mais tarde.");
+        fecharModal();
+    }
+});

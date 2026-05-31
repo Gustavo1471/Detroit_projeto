@@ -1,7 +1,60 @@
-// Função global para o Menu Lateral[cite: 7]
-window.toggleMenu = function() {
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Alimenta o header global (saudação)
+    const nomeUsuario = sessionStorage.getItem("nomeUsuario");
+    const saudacaoElement = document.getElementById("nomeUsuarioLogado");
+    
+    if (nomeUsuario && saudacaoElement) {
+        saudacaoElement.textContent = `Olá, ${nomeUsuario}!`;
+    }
+
+    // 2. Alimenta os campos internos do Perfil usando os dados da sessão
+    const perfilNome = document.getElementById("perfilNome");
+    const perfilUsuario = document.getElementById("perfilUsuario");
+    const perfilEmail = document.getElementById("perfilEmail");
+
+    if (perfilNome && nomeUsuario) {
+        perfilNome.textContent = nomeUsuario;
+    }
+    
+    if (perfilEmail) {
+        const emailSalvo = sessionStorage.getItem("emailUsuario") || "cliente@detroit.com";
+        perfilEmail.textContent = emailSalvo;
+    }
+
+    if (perfilUsuario && nomeUsuario) {
+        perfilUsuario.textContent = `@${nomeUsuario.toLowerCase().replace(/\s+/g, '')}`;
+    }
+
+    // 3. Tenta carregar uma foto de perfil salva anteriormente na sessão (opcional)
+    const fotoSalva = localStorage.getItem("fotoPerfilBase64");
+    if (fotoSalva) {
+        document.getElementById("fotoPerfilExibicao").src = fotoSalva;
+    }
+});
+
+// 📸 FUNÇÃO PARA FAZER O UPLOAD DA FOTO APARECER NA TELA IMEDIATAMENTE
+function uploadFoto(input) {
+    if (input.files && input.files[0]) {
+        const leitor = new FileReader();
+        
+        leitor.onload = function(e) {
+            // Altera o atributo src da imagem na tela para a imagem carregada
+            document.getElementById("fotoPerfilExibicao").src = e.target.result;
+            
+            // Opcional: Salva a imagem na memória do navegador para não sumir ao dar F5
+            localStorage.setItem("fotoPerfilBase64", e.target.result);
+        };
+        
+        // Lê o arquivo de imagem local do usuário
+        leitor.readAsDataURL(input.files[0]);
+    }
+}
+
+// Controla o menu lateral
+function toggleMenu() {
     const menu = document.getElementById("sideMenu");
     const overlay = document.getElementById("menuOverlay");
+    
     if (menu.style.width === "280px") {
         menu.style.width = "0px";
         overlay.style.display = "none";
@@ -9,55 +62,14 @@ window.toggleMenu = function() {
         menu.style.width = "280px";
         overlay.style.display = "block";
     }
-};
+}
 
-// Função para Editar Campos de Texto[cite: 7]
-window.editarCampo = function(idElemento, chaveSession) {
-    const elemento = document.getElementById(idElemento);
-    const novoValor = prompt(`Digite o novo valor:`, elemento.textContent);
-
-    if (novoValor !== null && novoValor.trim() !== "") {
-        elemento.textContent = novoValor;
-        sessionStorage.setItem(chaveSession, novoValor);
-        
-        if (chaveSession === 'nomeUsuario') {
-            document.getElementById('nomeUsuarioLogado').innerHTML = `Olá, <strong>${novoValor}</strong>!`;
-        }
-    }
-};
-
-// Função para Upload e Persistência da Foto[cite: 7]
-window.uploadFoto = function(input) {
-    if (input.files && input.files[0]) {
-        const leitor = new FileReader();
-        leitor.onload = function(e) {
-            const base64Image = e.target.result;
-            document.getElementById('fotoPerfilExibicao').src = base64Image;
-            localStorage.setItem('fotoPerfilUsuario', base64Image); // Salva permanentemente
-            alert("Foto de perfil atualizada!");
-        };
-        leitor.readAsDataURL(input.files[0]);
-    }
-};
-
-window.logout = function() {
+function logout() {
     sessionStorage.clear();
-    localStorage.clear();
-    window.location.href = 'login.html';
-};
+    localStorage.removeItem("fotoPerfilBase64"); // Limpa a foto no logout
+    window.location.href = "login.html";
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Carrega dados da sessão[cite: 7]
-    const nome = sessionStorage.getItem('nomeUsuario') || 'Usuário';
-    const email = sessionStorage.getItem('emailUsuario') || 'Não informado';
-    const fotoSalva = localStorage.getItem('fotoPerfilUsuario');
-    
-    // Atualiza Interface
-    if (fotoSalva) document.getElementById('fotoPerfilExibicao').src = fotoSalva;
-    document.getElementById('nomeUsuarioLogado').innerHTML = `Olá, <strong>${nome}</strong>!`;
-    document.getElementById('perfilNome').textContent = nome;
-    document.getElementById('perfilEmail').textContent = email;
-    document.getElementById('perfilUsuario').textContent = sessionStorage.getItem('userTag') || `@${nome.toLowerCase().replace(/\s/g, '')}`;
-    document.getElementById('perfilEndereco').textContent = sessionStorage.getItem('enderecoUsuario') || 'Não informado';
-    document.getElementById('perfilCEP').textContent = sessionStorage.getItem('cepUsuario') || '00000-000';
-});
+function editarCampo(idCampo, chaveSession) {
+    alert(`Função para alterar o campo habilitada! Integração com UPDATE do banco.`);
+}

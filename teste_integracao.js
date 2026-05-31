@@ -1,22 +1,28 @@
-// Exemplo de Teste de Integração: Node.js + SQL Server
-const { login } = require('./app'); // Supondo que sua função de login esteja no app.js
+// teste_integração.js
+const { getConnection, sql } = require('./src/database/db'); // Importa a conexão real do seu projeto
 
-async function testarConexaoBanco() {
-    console.log("--- TESTE DE INTEGRAÇÃO: COMUNICAÇÃO COM BANCO DE DADOS ---");
+async function testarIntegracaoBanco() {
+    console.log("--- TESTE DE INTEGRAÇÃO: COMUNICAÇÃO COM SQL SERVER ---");
     
     try {
-        // Tenta simular o login de um usuário que já existe no seu script SQL
-        // Ex: Bruno Oliveira (bruno@email.com) que definimos no Apêndice E
-        console.log("Tentando consultar usuário: bruno@email.com...");
-        
-        // Aqui simulamos a chamada que o sistema Detroit faz ao banco
-        const resultado = "Sucesso: Conexão estabelecida e dados recuperados."; 
-        
-        console.log("✅ Passou: O módulo de Autenticação integrou com o Banco de Dados.");
+        console.log("Tentando estabelecer conexão com o pool do banco DetroitSQL...");
+        const pool = await getConnection(); // Tenta conectar de verdade usando o seu .env
+        console.log("✅ Conexão estabelecida com sucesso!");
+
+        console.log("Executando query de integração na tabela Pedidos para o usuário 1...");
+        const result = await pool.request()
+            .input('idUsuario', sql.Int, 1)
+            .query('SELECT TOP 1 idPedido FROM DetroitSQL.dbo.Pedidos WHERE idUsuarioCliente = @idUsuario');
+
+        // Se a consulta rodar sem quebrar (mesmo que venha vazia), a integração de código + banco funcionou
+        console.log("✅ Passou: O back-end Node.js integrou e realizou consultas no SQL Server perfeitamente.");
     } catch (error) {
-        console.log("❌ Falhou: Erro na integração entre o código e o SQL.");
-        console.log("Detalhe do erro:", error.message);
+        console.log("❌ Falhou: Erro na integração entre o código Node.js e o SQL Server.");
+        console.log("Detalhe do erro técnico:", error.message);
+    } finally {
+        // Encerra o processo de teste
+        process.exit();
     }
 }
 
-testarConexaoBanco();
+testarIntegracaoBanco();

@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Detroit - Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="../css/style.css"> 
   <link rel="stylesheet" href="../css/home.css"> 
 </head>
 <body class="home-body">
 
-  <!-- Menu Lateral -->
   <div id="sideMenu" class="sidebar-menu">
     <div class="menu-header">
       <span>Menu</span>
@@ -22,46 +20,64 @@
       <li><a href="perfil.html">Perfil</a></li>
       <li><a href="sobre.html">Sobre nós</a></li>
     </ul>
-    <button class="btn-logout-sidebar" onclick="logout()">Logout</button>
+    <div class="menu-footer">
+        <button class="btn-logout-sidebar" onclick="logout()">Logout</button>
+    </div>
   </div>
 
   <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
   
   <header id="appHeader">
     <div id="saudacaoContainer">
-      <i class="fas fa-bars toggle-menu" onclick="toggleMenu()" style="cursor: pointer;"></i>
-      <span id="nomeUsuarioLogado">Olá!</span>
+      <i class="fas fa-bars toggle-menu" onclick="toggleMenu()"></i>
+      <span id="nomeUsuarioLogado">Olá, Usuário!</span>
     </div>
     <div id="iconesAcoes">
       <i class="fas fa-user-circle user-icon"></i>
     </div>
   </header>
 
-  <main>
-    <section class="search-banner">
-      <div class="search-container">
-        <div class="box-icon">
-          <img src="../html/img/box.png" alt="Ícone Caixa">
+<section class="search-banner">
+      <div class="banner-conteudo-wrapper">
+        
+        <div id="cuponsDisponiveisContainer" class="cupons-container-home">
+          </div>
+
+        <div class="search-container">
+          <div class="box-icon">
+            <img src="../html/img/box.png" alt="Ícone Caixa">
+          </div>
+          <input type="text" placeholder="Digite o código do seu pedido hoje...">
         </div>
-        <input type="text" placeholder="O que você está procurando hoje?">
+
       </div>
     </section>
 
-    <section class="home-content">
+<section class="home-content">
       <div class="titulo-home">
         <h2>Destaques para você:</h2>
       </div>
       <div class="categorias-grid">
-        <div class="categoria-card"><i class="fas fa-tshirt"></i><span>Roupas</span></div>
-        <div class="categoria-card"><i class="fas fa-laptop"></i><span>Eletrônicos</span></div>
-        <div class="categoria-card"><i class="fas fa-home"></i><span>Casa</span></div>
-        <div class="categoria-card"><i class="fas fa-gift"></i><span>Acessórios</span></div>
+        <a href="historico_pedidos.html" style="text-decoration: none; color: inherit;">
+          <div class="categoria-card"><i class="fas fa-box-open"></i><span>Meus Pedidos</span></div>
+        </a>
+
+        <a href="loja.html" style="text-decoration: none; color: inherit;">
+          <div class="categoria-card"><i class="fas fa-store"></i><span>Lojas Parceiras</span></div>
+        </a>
+
+        <div class="categoria-card" onclick="abrirChatbot()" style="cursor: pointer;">
+          <i class="fas fa-headset"></i><span>Suporte / SAC</span>
+        </div>
+
+        <a href="perfil.html" style="text-decoration: none; color: inherit;">
+          <div class="categoria-card"><i class="fas fa-user-cog"></i><span>Minha Conta</span></div>
+        </a>
       </div>
     </section>
   </main>
 
   <script>
-    // Função colocada diretamente aqui para garantir execução imediata
     function toggleMenu() {
         const menu = document.getElementById("sideMenu");
         const overlay = document.getElementById("menuOverlay");

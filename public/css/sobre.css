@@ -1,0 +1,230 @@
+/* CONTAINER PRINCIPAL */
+.sobre-container {
+    padding: 40px 20px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+/* CARD DE APRESENTAÇÃO (ROXO CLARO PADRONIZADO) */
+.sobre-card {
+    background-color: #eae7f2; /* Mesmo tom de roxo claro do Perfil */
+    border-radius: 20px;
+    padding: 50px 40px;
+    box-shadow: 0 10px 25px rgba(85, 70, 135, 0.1);
+}
+
+.sobre-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.sobre-card h1 {
+    color: #554687;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.badge-extensao {
+    background-color: #98ded9;
+    color: #332a54;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.institucional-txt {
+    color: #444444;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.divisor-sobre {
+    border: none;
+    height: 1px;
+    background-color: #c5c1d7;
+    margin: 40px 0;
+}
+
+/* SEÇÃO DE INTEGRANTES */
+.equipe-secao h3 {
+    color: #554687;
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.integrantes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.integrante-item {
+    background-color: #ffffff; /* Fundo branco para destacar os blocos de nomes */
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #c5c1d7;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.integrante-item i {
+    font-size: 1.5rem;
+    color: #26baa4; /* Verde esmeralda combinando com os ícones da Home */
+    background-color: #eaf8f6;
+    padding: 12px;
+    border-radius: 50%;
+}
+
+.info-membro {
+    display: flex;
+    flex-direction: column;
+}
+
+.nome-membro {
+    color: #332a54;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.sub-membro {
+    color: #777777;
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .sobre-header { flex-direction: column; align-items: flex-start; }
+    .integrantes-grid { grid-template-columns: 1fr; }
+    .sobre-card { padding: 30px 20px; }
+}
+
+/* ==========================================================================
+   🤖 DESIGN DO CHATBOT FLUTUANTE (DETROIT ASSISTENTE)
+   ========================================================================== */
+
+/* BALÃO/BOTÃO FLUTUANTE NO CANTO DA TELA */
+.suporte-balao-flutuante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #26baa4; /* Verde esmeralda padrão */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(38, 186, 164, 0.4);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+.suporte-balao-flutuante:hover { transform: scale(1.1); background-color: #1e9683; }
+
+/* JANELA DO CHAT CONTAINER */
+.chatbot-janela {
+    display: none; /* Começa escondido, o JS muda para 'flex' */
+    position: fixed;
+    bottom: 105px;
+    right: 30px;
+    width: 350px;
+    height: 450px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    z-index: 10000;
+    overflow: hidden;
+    border: 1px solid #c5c1d7;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+/* Cabeçalho do Chat (Roxo Detroit) */
+.chatbot-header {
+    background-color: #554687;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.chatbot-header i { cursor: pointer; color: #98ded9; font-size: 1.2rem; }
+
+/* Área onde as mensagens sobem */
+.chatbot-mensagens {
+    flex: 1;
+    padding: 15px;
+    background-color: #f0eef6; /* Fundo roxo pastel macio */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo dos balões de fala */
+.msg-bala {
+    padding: 10px 14px;
+    border-radius: 15px;
+    max-width: 75%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+/* Balão do Bot (Esquerda) */
+.msg-bala.bot {
+    background-color: #ffffff;
+    color: #332a54;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    border: 1px solid #c5c1d7;
+}
+/* Balão do Usuário/Bruno (Direita) */
+.msg-bala.usuario {
+    background-color: #26baa4;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+/* Rodapé com campo de texto */
+.chatbot-input-area {
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #c5c1d7;
+    align-items: center;
+}
+.chatbot-input-area input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+.chatbot-input-area button {
+    background: none;
+    border: none;
+    color: #26baa4;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: color 0.2s;
+}
+.chatbot-input-area button:hover { color: #1e9683; }

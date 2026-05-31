@@ -1,5 +1,12 @@
+
 /* ESTILO GERAL */
-body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
+body.pedidos-body { 
+    background-color: #d1e9e7; 
+    margin: 0; 
+    overflow-x: hidden; 
+    /* Adicione esta linha abaixo para carregar a fonte moderna: */
+    font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
+}
 
 #appHeader {
     background-color: #554687;
@@ -87,18 +94,321 @@ body.pedidos-body { background-color: #d1e9e7; margin: 0; overflow-x: hidden; }
 }
 
 /* CARDS E MODAL (MANTIDOS) */
+/* SEÇÃO DO HISTÓRICO - CONTROLLER DO CONTAINER */
+.historico-section {
+    padding: 40px 20px;
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+.titulo-historico h2 {
+    color: #554687;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    display: inline-block;
+}
+
+/* CONTAINER PRINCIPAL (ROXO CLARO PADRONIZADO DETROIT) */
+#listaPedidosContainer {
+    background-color: #eae7f2; /* Tom de roxo claro idêntico ao perfil */
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 25px rgba(85, 70, 135, 0.08);
+}
+
+/* CARDS DE CADA PRODUTO INDIVIDUAL */
 .pedido-card {
-    background-color: #e0f2f1;
-    border-bottom: 2px solid #554687;
+    background-color: #ffffff; /* Fundo branco puro para gerar contraste */
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    padding: 15px;
+    justify-content: space-between;
+    padding: 20px;
     gap: 20px;
-    max-width: 900px;
-    margin: 10px auto;
+    max-width: 100%; /* Remove o antigo max-width fixo para preencher o container */
+    margin: 0;
+    border: 1px solid #c5c1d7;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pedido-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(85, 70, 135, 0.12);
+}
+
+/* IMAGEM DO PRODUTO */
+.produto-img {
+    width: 65px;
+    height: 65px;
+    background-color: #f0eef6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #554687;
+}
+
+.produto-img img {
+    width: 38px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* INFORMAÇÕES DO PEDIDO */
+.pedido-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     text-align: left;
 }
 
-.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 6000; }
-.modal-content { background: #c5c1d7; width: 90%; max-width: 450px; margin: 100px auto; padding: 30px; border-radius: 15px; position: relative; color: #554687; }
-.star.ativo { color: #fdd835; }
+.pedido-numero {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #26baa4; /* Código identificador em verde esmeralda */
+}
+
+.pedido-info h3 {
+    margin: 0;
+    color: #332a54;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.produto-valor {
+    margin: 0;
+    color: #777777;
+    font-size: 0.95rem;
+}
+
+.produto-valor strong {
+    color: #554687;
+}
+
+/* BOTÃO DE AVALIAÇÃO PREMIUM */
+.btn-enviar-av {
+    background-color: #26baa4; /* Verde esmeralda vivo */
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(38, 186, 164, 0.15);
+    transition: background-color 0.2s;
+}
+
+.btn-enviar-av:hover {
+    background-color: #1e9683;
+}
+
+/* BADGE DE PRODUTO JÁ AVALIADO */
+.rating-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #e2f7f3;
+    color: #1e9683;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* SUPORTE FLUTUANTE */
+.support-float {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background-color: #26baa4;
+    color: white;
+    width: 55px; height: 55px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 22px; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(38, 186, 164, 0.3);
+    transition: all 0.2s;
+    z-index: 4000;
+}
+.support-float:hover { transform: scale(1.05); background-color: #1e9683; }
+
+/* MODAL DE AVALIAÇÃO REESTILIZADO */
+.modal-overlay {
+    display: none; /* Controlado via JS */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 6000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #ffffff; /* Fundo branco puro para visualização limpa do formulário */
+    width: 90%;
+    max-width: 450px;
+    margin: 0; /* Centralizado pelo flex do overlay */
+    padding: 35px;
+    border-radius: 20px;
+    position: relative;
+    color: #332a54;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.2s;
+}
+.fechar-modal:hover { color: #333; }
+
+.modal-content h2 { margin-top: 0; color: #554687; font-weight: 700; }
+
+/* ESTRELAS DOURADAS */
+#ratingStars { display: flex; justify-content: center; gap: 8px; margin: 15px 0 25px 0; }
+.star { font-size: 2.2rem; color: #c5c1d7; cursor: pointer; transition: color 0.1s; }
+.star.ativo, .star:hover { color: #f39c12; } /* Amarelo dourado elegante */
+
+/* CAMPO DE TEXTO DO MODAL */
+#comentarioAvaliacao {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f0eef6;
+    border: 1px solid #c5c1d7;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: inherit;
+    outline: none;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.modal-buttons { display: flex; justify-content: center; gap: 15px; }
+.btn-cancelar-av { background-color: #ff5b5b; color: white; border: none; padding: 10px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+.btn-cancelar-av:hover { background-color: #e04444; }
+
+/* ==========================================================================
+   🤖 DESIGN DO CHATBOT FLUTUANTE (DETROIT ASSISTENTE)
+   ========================================================================== */
+
+/* BALÃO/BOTÃO FLUTUANTE NO CANTO DA TELA */
+.suporte-balao-flutuante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #26baa4; /* Verde esmeralda padrão */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(38, 186, 164, 0.4);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+.suporte-balao-flutuante:hover { transform: scale(1.1); background-color: #1e9683; }
+
+/* JANELA DO CHAT CONTAINER */
+.chatbot-janela {
+    display: none; /* Começa escondido, o JS muda para 'flex' */
+    position: fixed;
+    bottom: 105px;
+    right: 30px;
+    width: 350px;
+    height: 450px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    z-index: 10000;
+    overflow: hidden;
+    border: 1px solid #c5c1d7;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+/* Cabeçalho do Chat (Roxo Detroit) */
+.chatbot-header {
+    background-color: #554687;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+.chatbot-header i { cursor: pointer; color: #98ded9; font-size: 1.2rem; }
+
+/* Área onde as mensagens sobem */
+.chatbot-mensagens {
+    flex: 1;
+    padding: 15px;
+    background-color: #f0eef6; /* Fundo roxo pastel macio */
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo dos balões de fala */
+.msg-bala {
+    padding: 10px 14px;
+    border-radius: 15px;
+    max-width: 75%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+/* Balão do Bot (Esquerda) */
+.msg-bala.bot {
+    background-color: #ffffff;
+    color: #332a54;
+    align-self: flex-start;
+    border-bottom-left-radius: 2px;
+    border: 1px solid #c5c1d7;
+}
+/* Balão do Usuário/Bruno (Direita) */
+.msg-bala.usuario {
+    background-color: #26baa4;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 2px;
+}
+
+/* Rodapé com campo de texto */
+.chatbot-input-area {
+    display: flex;
+    padding: 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #c5c1d7;
+    align-items: center;
+}
+.chatbot-input-area input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 0.9rem;
+}
+.chatbot-input-area button {
+    background: none;
+    border: none;
+    color: #26baa4;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+    transition: color 0.2s;
+}
+.chatbot-input-area button:hover { color: #1e9683; }
